@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+  rel="stylesheet"
+/>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", serif;
+}
+
+body {
+    display: flex;
+    background-color: #f5f5f5;
+}
+.main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color:  rgba(83, 176, 155,0.2);;
+}
+.sidebar {
+    width: 16.5%;
+    background-color: #53b09b;
+    color: #fff;
+    padding: 20px;
+    padding-right: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    position: relative;
+    /* display: none; */
+    transition: all 0.5s ease-in-out;
+    /* position: fixed; */
+}
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar-content .logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* padding: 0px; */
+    margin-top: -10px;
+    /* position: absolute; */
+    /* background-color: #fff; */
+  }
+  
+  .sidebar-content h3,i {
+    color: white;
+    font-size: 1.5em;
+  }
+  
+  .main-content .upper-header i{
+    display: none;
+    font-size: 1.6em;
+  }
+  .sidebar-content img {
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  /* Sidebar items styling */
+  .items {
+    list-style: none;
+    padding-top: 10px;
+  }
+  
+  .items li {
+    display: flex;
+    align-items: center;
+    padding: 14px 0;
+    font-size: 1em;
+  }
+  
+  .items li i {
+    color: white;
+    margin-right: 10px;
+    margin-left: 20px;
+  }
+  
+  .items li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .items li:hover {
+    cursor: pointer;
+    background-color: white;
+    border-left: 4px solid #53b09b;
+    padding-left: 16px;
+    
+  }
+  
+  .items li:hover a,
+  .items li:hover i {
+    /* color: #f3f4f6; */
+    transition: 0.3s ease;
+    color: #53b09b;
+    transform: scale(1.05);
+  }
+  .upgrade {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    /* margin-left: -10px; */
+    width: 90%;
+    margin-top: 100%;
+}
+
+.upgrade p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.upgrade button {
+    background-color: rgba(83, 176, 155,0.8);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.main .main-content {
+    width: 80%;
+    padding: 20px;
+    /* background-color: #6b52ae; */
+    height: 100vh;
+    margin-left: 8px;
+    overflow-y: auto;
+   /* background-color: rgba(83, 176, 155,0.2); */
+    padding-left:3.5vw ;
+}
+
+.main .main-content::-webkit-scrollbar{
+  display: none;
+}
+#connect-map{
+    width: 90%;
+    height: 27vw;
+    /* background-color: #9a5b5b; */
+    margin-top: 15px;
+    border-radius: 25px;
+    border: 2px solid #53b09b;
+    /* box-shadow: rgba(83, 176, 155,0.5); */
+}
+.location-url{
+    width: 90%;
+    padding: 10px;
+    height: 3.5vw;
+    /* background-color: #fefefe; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1vw;
+}
+.location-url input{
+    height:100%;
+    border-radius: 10px;
+    width: 40%;
+    border: 2px solid #53b09b;
+    padding-left: 15px;
+}
+#chat{
+    height: 40px;
+    width: 120px;
+    border-radius: 10px;
+    margin-left: 40%;
+    margin-top: 40px;
+     background-color:#53b09b;
+    /* border: 2px solid #53b09b; */
+    border: none;
+    color: white;
+}
+#chat:hover{
+    background-color: gold;
+    transform: scale(1.15);
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+    </style>
+   
+    <script src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyMcxxkPDXGvkROsyXCWJuemiSWh_zXwfmq"></script> 
+
+</head>
+<body onload="initMap()">
+    <div class="main">
+        <nav class="sidebar" id="sidebar">
+            <section class="sidebar-content">
+                <div class="logo">
+                  <img src="/images/LOGO-removebg-preview.png" alt="Meal Connect Logo" />
+                    <h3>mealConnect</h3>
+                </div>
+                <ul class="items">
+                  <li><i class="ri-store-fill"></i><a href="/listings/index">Home</a></li>
+                  <li><i class="ri-dashboard-line"></i><a href="/listings/board">Dashboard</a></li>
+                  <li><i class="ri-compass-discover-line"></i><a href="/listings/navigations">Route Finder</a></li>
+                  <li><i class="ri-message-3-line"></i><a href="#">Messages</a></li>
+                  <li><i class="ri-settings-line"></i><a href="/listings/details">Settings</a></li>
+                </ul>
+              </section>
+              <div class="upgrade">
+                <p>Upgrade to unlock premium features</p>
+                <button>Upgrade</button>
+            </div> 
+        </nav>
+        <div class="main-content">
+            <h1>Your Optimal Route  </h1>
+            <div id="connect-map">
+
+            </div>
+            <div class="location-url">
+                <input type="text" id="origin" placeholder="Enter origin" />
+                <input type="text" id="destination" placeholder="Enter destination" />
+            </div>
+           <button id="chat" onclick="calculateAndDisplayRoute()">Get Direction</button>
+        </div> 
+         
+    </div>
+    <script>
+        let map, directionsService, directionsRenderer;
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("connect-map"), {
+        zoom: 13,
+        center: { lat: 23.3441, lng: 85.3096 },
+    });
+
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer();
+    directionsRenderer.setMap(map);
+}
+
+function calculateAndDisplayRoute() {
+    const origin = document.getElementById("origin").value;
+    const destination = document.getElementById("destination").value;
+
+    directionsService.route(
+        {
+            origin: origin,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (response, status) => {
+            if (status === "OK") {
+                directionsRenderer.setDirections(response);
+            } else {
+                console.error("Directions request failed due to " + status);
+                alert("Could not retrieve directions. Please try again later.");
+            }
+        }
+    );
+}
+
+    </script>
+</body>
+</html>

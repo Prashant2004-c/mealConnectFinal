@@ -1,0 +1,276 @@
+<!-- <form action="/auth/register" method="POST">
+  <input type="text" name="username" placeholder="Username" required />
+  <input type="password" name="password" placeholder="Password" required />
+  <select name="role">
+    <option value="user">User</option>
+    <option value="admin">Admin</option>
+  </select>
+  <button type="submit">Register</button>
+</form> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup Page</title>
+<style>
+    /* Reset some default browser styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        /* background: linear-gradient(135deg, #046307, #50c878); */
+        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        color: #fff;
+        overflow: hidden;
+    }
+
+    /* Container for the signup form and image */
+    .signup-container {
+        display: flex;
+        flex-direction: row;
+        width: 800px;
+        height: 500px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Styling for the form container */
+    .form-container {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* background-color: rgba(255, 255, 255, 0.2); */
+    }
+
+    .form-container h2 {
+        margin-bottom: 20px;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .form-container input,
+    .form-container select {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        color: #333;
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-container select {
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-container button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 20px;
+        background: #ff7e5f;
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        border: none;
+        color: white;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .form-container button:hover {
+        transform: translateY(-3px);
+    }
+
+    /* Dropdown label styling */
+    .form-container .dropdown-label {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #ffffff;
+    }
+
+    /* Styling for the image container */
+    .image-container {
+    flex: 1;
+    background-image: url('https://i.pinimg.com/736x/b4/1d/1a/b41d1a75168fa57cfcb048342a0b46ab.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Lighten the overlay */
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* Increased transparency */
+}
+
+.home_meat-1{
+  width:40px;
+  position: absolute;
+  top:40rem;
+  right : 5rem;
+  opacity: .8;
+}
+
+.home_meat-2{
+  width:40px;
+  position: absolute;
+  bottom:30rem;
+  right : 17rem;
+  opacity: .8;
+}
+
+.home_meat-3{
+  width:40px;
+  position: absolute;
+  bottom:3rem;
+  right : 47rem;
+  opacity: .8;
+}
+
+.home_meat-4{
+  width:40px;
+  position: absolute;
+  top:40rem;
+  left : 17rem;
+  opacity: .8;
+}
+
+.favorite_cheese-1,.favorite_cheese-2,.favorite_cheese-3,.favorite_cheese-4,.favorite_cheese-5,.favorite_cheese-6{
+  width: 40px;
+  position:absolute;
+  opacity: .8;
+}
+
+.favorite_cheese-1{
+  top: 2rem;
+  left: 58rem;
+  rotate: -15deg;
+}
+
+.favorite_cheese-2{
+  bottom: 22rem;
+  left: 15rem;
+  transform: scaleX(-1) rotate(45deg);
+}
+
+.favorite_cheese-3{
+  top: 3rem;
+  left: 26rem;
+  rotate: -15deg;
+}
+
+.favorite_cheese-4{
+  bottom: 55rem;
+  left: 13rem;
+  transform: scaleX(-1) rotate(45deg);
+}
+
+.favorite_cheese-5{
+  top: 2rem;
+  right: 9rem;
+  rotate: -15deg;
+}
+
+.favorite_cheese-6{
+  top: 45rem;
+  right: 2rem;
+  transform: scaleX(-1) rotate(45deg);
+}
+
+.products_crab,.products_hamburger-1,.products_hamburger-2,.products_hamburger-3,.products_cheese{
+  position: absolute;
+  width: 40px;
+  opacity: .8;
+}
+
+.products_crab{
+  top: 3.5rem;
+  left: 15rem;
+  rotate: 30deg;
+}
+
+.products_hamburger-1{
+  top: 26rem;
+  right: 10rem;
+  rotate: -30deg;
+}
+
+.products_hamburger-2{
+  top: 10rem;
+  left: 1.5rem;
+  rotate: 15deg;
+}
+
+.products_hamburger-3{
+  top: 30rem;
+  left: 8rem;
+  rotate: -25deg;
+}
+
+
+
+</style>
+</head>
+<body>
+  <img src="../images/meat.png" alt="image" class="home_meat-1">
+  <img src="../images/meat.png" alt="image" class="home_meat-2">
+  <img src="../images/meat.png" alt="image" class="home_meat-3">
+  <img src="../images/meat.png" alt="image" class="home_meat-4">
+  <img src="../images/cheese.png" alt="image" class="favorite_cheese-1">
+  <img src="../images/cheese.png" alt="image" class="favorite_cheese-2">
+  <img src="../images/cheese.png" alt="image" class="favorite_cheese-3">
+  <img src="../images/cheese.png" alt="image" class="favorite_cheese-4">
+  <img src="../images/cheese.png" alt="image" class="favorite_cheese-5">
+  <img src="../images/cheese.png" alt="image" class="favorite_cheese-6">
+  <img src="../images/crab.png" alt="image" class="products_crab">
+  <img src="../images/hamburger.png" alt="image" class="products_hamburger-1">
+  <img src="../images/hamburger.png" alt="image" class="products_hamburger-2">
+  <img src="../images/hamburger.png" alt="image" class="products_hamburger-3">
+
+  
+<div class="signup-container">
+    <div class="form-container">
+        <h2 style="color:darkorchid">Sign Up</h2>
+        <form action="/auth/register" method="POST">
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <label class="dropdown-label" for="role" style="color: rgb(172, 60, 172); margin-top: 7px;">Join as:</label>
+            <select name="role" id="role" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <div class="image-container"></div>
+</div>
+
+</body>
+</html>
+
+

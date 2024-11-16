@@ -1,0 +1,273 @@
+<!-- <% layout('/layouts/boilerPlate') -%> -->
+<!-- <div class="row mt-3"> 
+  <div class="col-8 offset-3">
+    <h3><%= listing.name %></h3>
+  </div>
+  <br>
+<div class="card col-6 offset-3 listing-card">
+  <img src="<%= listing.image %>" class="card-img-top show-img" alt="Listing_image">
+  <br>
+  <div class="card-body">
+    <p class="card-text">
+      <br>
+      <%= listing.item %><br/>
+      <%= listing.quantity%><br/>
+      <%= listing.street %><br/>
+      <%= listing.city %> <br/>
+      <%= listing.state %> <br/>
+      <%= listing.country%> <br/>
+    </p>
+  </div>
+</div>
+
+  <br />
+
+  <div class="btns">
+    <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark add-btn col-1 offset-3 ">Edit</a>
+    <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+      <button type="submit" class="btn btn-dark add-btn  offset-5">Delete </button>
+    </form>
+  </div>
+
+  <div class="col-8 offset-3">
+    <hr>
+    <h4>Leave a Review</h4>
+    <form class="mb-3" action="/listings/<%=listing.id%>/reviews" method="POST" >
+
+      <div class="mb-3 mt-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range" >
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="comment" class="form-label">Comment</label>
+        <textarea name="review[comment]" id="comment" cols ="30" rows ="5" class ="form-control" required ></textarea>
+      </div>
+
+      <button class="btn btn-outline-dark">Submit</button>
+
+    </form>
+
+    <hr>
+    <p>
+      <b>All reviews</b>
+      <div class="row">
+      <% for(review of listing.reviews) { %>
+        <div class="card col-5 mb-3 ms-3"> 
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text"> <%=review.comment%> </p>
+            <p class="card-text"> <%=review.rating%> Stars </p>
+            <form  class="mb-3" method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+              <button class="btn btn-sm btn-dark add-btn">Delete</button>
+            </form>
+          </div>
+        </div>
+      <% } %>
+    </div>
+    </p>
+  </div>
+  <br />
+
+</div>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Listing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", serif;
+}
+
+.main {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: rgb(83, 176, 155);
+  background: linear-gradient(
+    0deg,
+    rgba(83, 176, 155, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+img {
+  position: absolute;
+  background-size: cover;
+  z-index: -1;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+}
+
+.content {
+  height: 80%;
+  width: 65%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 32px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  /* background-image: url("Gourmet\ Dessert\ Baguette\ Puff\ Pastry\ Poster\ Psd\ Layered\ Background\ Wallpaper\ Image\ For\ Free\ Download\ -\ Pngtree.jpg");
+  background-size: cover; */
+}
+
+.left,
+.right {
+  height: 90%;
+  width: 47%;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4vw 0;
+  border-radius: 32px;
+  background-image: url("<%=listing.image%>");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: linear-gradient(135deg, #5c258d, #4389a2); */
+  border-radius: 0 32px 32px 0;
+  padding: 2vw;
+  /* overflow-y: auto; */
+  color: white; /* Ensure text visibility */
+}
+
+.listing-info {
+  width: 100%;
+  max-width: 450px;
+  padding: 10px 10px;
+  /* background-color: #664e4e; */
+  border-radius: 16px;
+  /* box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); */
+  text-align: center;
+}
+
+h2 {
+  /* margin-bottom: 1.5vw; */
+  color: #333; /* Dark color for text visibility */
+  font-size: 24px; /* Larger font for better visibility */
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3); /* Add shadow for better contrast */
+  overflow-wrap: break-word; /* Ensure long text doesn't overflow */
+}
+
+.info-group {
+  /* margin-bottom: 1.5vw; */
+  display: flex; /* Use flex to align label and div on the same line */
+  justify-content: space-between; /* Ensure space between label and div */
+  align-items: center;
+}
+
+.info-group label {
+  font-weight: 600;
+  color: #333;
+  /* background-color: red; */
+  /* width: 40%;  */
+}
+
+.info-group div {
+  margin-top: 0.5vw;
+  padding: 0.8vw;
+  background-color: #fff; /* White background for the div */
+  border-radius: 5px;
+  color: #333;
+  width: 50%; /* Ensure div takes up remaining space */
+  /* background-color: blue; */
+  text-align: left;
+}
+.btn {
+  height: 4vw;
+  width: 100%;
+  /* background-color: #dbbebe ; */
+  padding-top: calc(2.5vw - 10%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+.btn button {
+  height: 80%;
+  width: 8vw;
+  background-color: rgb(70, 214, 142);
+  border-radius: 5px;
+  border: none;
+  position: relative;
+  /* right: 2.2vw; */
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <!-- <img src="seamless-background-20660167.jpg" alt=""> -->
+      <div class="content">
+        <!-- Left Portion -->
+        <div class="left"></div>
+
+        <!-- Right Portion -->
+        <div class="right">
+          <div class="listing-info">
+            <h2> <%= listing.item %></h2>
+            <div class="info-group">
+              <label>Surplus Item Name:</label>
+              <div> <%= listing.item %> </div>
+            </div>
+            <div class="info-group">
+              <label>Quantity:</label>
+              <div> <%= listing.quantity%> </div>
+            </div>
+            <div class="info-group">
+              <label>Availability:</label>
+              <div> <%= listing.availability%> </div>
+            </div>
+            <div class="info-group">
+              <label>Country (India):</label>
+              <div> <%= listing.country%> </div>
+            </div>
+            <div class="info-group">
+              <label>State:</label>
+              <div><%= listing.state %></div>
+            </div>
+            <div class="info-group">
+              <label>City:</label>
+              <div><%= listing.city %></div>
+            </div>
+            <div class="info-group">
+              <label>Locality:</label>
+              <div><%= listing.street %></div>
+            </div>
+            <div class="btn"><button>Pick Up</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

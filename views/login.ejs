@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MealConnect Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+  rel="stylesheet"
+/>
+<style>
+
+  /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    width: 90%;
+    height: 30vw;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Login Form Styles */
+.login-form {
+    padding: 40px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.login-form p {
+    color: #666;
+    margin: 10px 0;
+}
+
+.login-form a {
+    color: #53b09b;
+    text-decoration: none;
+}
+
+.input-group {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 14px;
+    color: #555;
+}
+
+.input-group input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #53b09b;
+    outline: none;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+.login-btn {
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #53b09b;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #469f89;
+}
+
+.forgot-password {
+    color: #666;
+    text-decoration: none;
+}
+
+/* Illustration Section */
+.illustration {
+    width: 50%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: slideIn 1s ease;
+}
+
+.illustration-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    animation: fadeIn 2s ease;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        transform: scale(1);
+    }
+    .login-form, .illustration {
+        width: 100%;
+    }
+}
+.home_meat-1{
+    width:40px;
+    position: absolute;
+    top:40rem;
+    right : 5rem;
+    opacity: .8;
+  }
+  
+  .home_meat-2{
+    width:40px;
+    position: absolute;
+    bottom:30rem;
+    right : 17rem;
+    opacity: .8;
+  }
+  
+  .home_meat-3{
+    width:40px;
+    position: absolute;
+    bottom:3rem;
+    right : 47rem;
+    opacity: .8;
+  }
+  
+  .home_meat-4{
+    width:40px;
+    position: absolute;
+    top:40rem;
+    left : 17rem;
+    opacity: .8;
+  }
+  
+  .favorite_cheese-1,.favorite_cheese-2,.favorite_cheese-3,.favorite_cheese-4,.favorite_cheese-5,.favorite_cheese-6{
+    width: 40px;
+    position:absolute;
+    opacity: .8;
+  }
+  
+  .favorite_cheese-1{
+    top: 2rem;
+    left: 58rem;
+    rotate: -15deg;
+  }
+  
+  .favorite_cheese-2{
+    bottom: 22rem;
+    left: 15rem;
+    transform: scaleX(-1) rotate(45deg);
+  }
+  
+  .favorite_cheese-3{
+    top: 3rem;
+    left: 26rem;
+    rotate: -15deg;
+  }
+  
+  .favorite_cheese-4{
+    bottom: 55rem;
+    left: 13rem;
+    transform: scaleX(-1) rotate(45deg);
+  }
+  
+  .favorite_cheese-5{
+    top: 2rem;
+    right: 9rem;
+    rotate: -15deg;
+  }
+  
+  .favorite_cheese-6{
+    top: 45rem;
+    right: 2rem;
+    transform: scaleX(-1) rotate(45deg);
+  }
+  
+  .products_crab,.products_hamburger-1,.products_hamburger-2,.products_hamburger-3,.products_cheese{
+    position: absolute;
+    width: 40px;
+    opacity: .8;
+  }
+  
+  .products_crab{
+    top: 3.5rem;
+    left: 15rem;
+    rotate: 30deg;
+  }
+  
+  .products_hamburger-1{
+    top: 26rem;
+    right: 10rem;
+    rotate: -30deg;
+  }
+  
+  .products_hamburger-2{
+    top: 10rem;
+    left: 1.5rem;
+    rotate: 15deg;
+  }
+  
+  .products_hamburger-3{
+    top: 30rem;
+    left: 8rem;
+    rotate: -25deg;
+  }
+
+</style>
+    
+</head>
+<body>
+    <img src="/images/meat.png" alt="image" class="home_meat-1">
+    <img src="/images/meat.png" alt="image" class="home_meat-2">
+    <img src="/images/meat.png" alt="image" class="home_meat-3">
+    <img src="/images/meat.png" alt="image" class="home_meat-4">
+    <img src="/images/cheese.png" alt="image" class="favorite_cheese-1">
+    <img src="/images/cheese.png" alt="image" class="favorite_cheese-2">
+    <img src="/images/cheese.png" alt="image" class="favorite_cheese-3">
+    <img src="/images/cheese.png" alt="image" class="favorite_cheese-4">
+    <img src="/images/cheese.png" alt="image" class="favorite_cheese-5">
+    <img src="/images/cheese.png" alt="image" class="favorite_cheese-6">
+    <img src="/images/crab.png" alt="image" class="products_crab">
+    <img src="/images/hamburger.png" alt="image" class="products_hamburger-1">
+    <img src="/images/hamburger.png" alt="image" class="products_hamburger-2">
+    <img src="/images/hamburger.png" alt="image" class="products_hamburger-3">
+    <div class="container">
+        <!-- Login Form Section -->
+        <div class="login-form">
+            <h2>Login</h2>
+            <p>Don’t have an account yet? <a href="/auth/register">Sign Up</a></p>
+            <form action="/auth/login" method="POST">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Enter your username" required />
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required />
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+
+        <!-- Vector Illustration Section -->
+        <div class="illustration">
+            <!-- Placeholder for your vector graphic -->
+            <img src="/images/login.png" alt="Login Illustration" class="illustration-img">
+        </div>
+    </div>
+</body>
+</html>

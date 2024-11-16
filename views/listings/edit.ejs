@@ -1,0 +1,288 @@
+<!-- <% layout('/layouts/boilerPlate') -%>
+<br/>
+<div class="row">
+  <div class="col-8 offset-2">
+<h3>Edit your Listing</h3>
+<form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation">
+  <div class="mb-3">
+    <label for="name" class="form-label">Restaurant name</label>
+    <input name="listing[name]" value="<%= listing.name %>" type="text" class="form-control" required />
+    <div class="valid-feedback"> Successfully updated name !!! </div>
+    <div class="invalid-feedback">Please enter your restaurant name.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="item" class="form-label">Surplus item</label>
+    <textarea name="listing[item]" class="form-control" required ><%= listing.item %></textarea>
+    <div class="valid-feedback"> Successfully updated item!!!</div>
+    <div class="invalid-feedback">Please enter surplus item.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="image" class="form-label">Image Link</label>
+    <input name="listing[image]" value="<%= listing.image %>" type="text" class="form-control" required />
+    <div class="valid-feedback"> Done !!! </div>
+    <div class="invalid-feedback">Please enter an image link .</div>
+  </div>
+
+
+    <div class="mb-3 ">
+      <label for="quantity" class="form-label">Quantity </label>
+      <input name="listing[quantity]" value="<%= listing.quantity %>" type="number" class="form-control" required  />
+      <div class="valid-feedback"> Successfully updated item!!!</div>
+      <div class="invalid-feedback">Please enter price per night</div>
+    </div>
+
+    <div class="mb-3 ">
+      <label for="availability" class="form-label">Availability</label>
+      <input name="listing[availability]" value="<%= listing.availability %>" type="text" class="form-control" required />
+      <div class="valid-feedback"> Successfully filled details !!!</div>
+      <div class="invalid-feedback">Please enter plates available</div>
+    </div>
+
+    <div class="mb-3 ">
+      <label for="street" class="form-label">Country</label>
+      <input name="listing[street]" value="<%= listing.street %>" type="text" class="form-control" required />
+      <div class="valid-feedback"> Done !!!</div>
+      <div class="invalid-feedback">Please enter street address.</div>
+    </div>
+  
+  
+  <div class="mb-3">
+    <label for="city" class="form-label">Location</label>
+    <input name="listing[city]" value="<%= listing.city %>" type="text" class="form-control" required />
+    <div class="valid-feedback"> city updated !!! </div>
+    <div class="invalid-feedback">Please enter the city.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="state" class="form-label">Location</label>
+    <input name="listing[state]" value="<%= listing.state %>" type="text" class="form-control" required />
+    <div class="valid-feedback"> state updated !!! </div>
+    <div class="invalid-feedback">Please enter the state.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="country" class="form-label">Location</label>
+    <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required />
+    <div class="valid-feedback"> country updated !!! </div>
+    <div class="invalid-feedback">Please enter the country.</div>
+  </div>
+
+
+  <button class="btn btn-dark add-btn">Edit</button>
+</form>
+</div>
+</div> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Your Listing</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", serif;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.main{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    background: rgb(255,255,255);
+    background: linear-gradient(176deg, rgba(255,255,255,1) 0%, rgba(163,211,207,1) 100%);
+    /* padding: 40px; */
+    padding-right: 40px;
+}
+.left-img{
+    width: 60vw;
+    height: 40vw;
+    object-fit: cover;
+    position: absolute;
+    z-index: 1;
+    margin-top: 40px;
+}
+.left-img img{
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 90%;
+    max-width: 540px;
+    padding: 2rem;
+    background-color: rgba(108, 165, 162,0.4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    /* text-align: center; */
+    position: absolute;
+    z-index: 2;
+
+}
+
+h1 {
+    margin-bottom: -0.5rem;
+    color: #0e5012;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: bold;
+}
+
+input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+}
+
+input:focus {
+    border-color: #068d6e;
+    box-shadow: 0 0 3px rgba(127, 255, 212, 0.5);
+}
+
+.edit-btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem;
+    background-color: #068d6e;
+    
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #026850;
+}
+
+/* Row styling for horizontally aligned fields */
+.row {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    width: 48%;
+}
+
+.column label {
+    margin-top: 0; /* Remove extra space for row labels */
+}
+
+.btn-box{
+    width: 100%;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn-box button{
+    width: 49%;  
+}
+
+.btn-box .cancel-btn{
+    background-color: rgba(248, 33, 33,0.7);
+}
+
+.btn-box .cancel-btn:hover{
+    background-color: rgb(248, 33, 33);
+}
+
+    </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="left-img">
+        <img src="/images/form-image.png" alt="">
+    </div>
+    <div class="main">
+        
+        <div class="container">
+            <h1>Edit Food Details</h1>
+              <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
+                <label for="name" class="form-label"></label>
+                <input name="listing[name]" value="<%= listing.name %>" type="text" class="form-control" required />
+    
+                <div class="row">
+                    <div class="column">
+                        <label for="item" class="form-label"></label>
+                        <input name="listing[item]" value="<%= listing.item %>" class="form-control"required >
+                    </div>
+                    <div class="column">
+                        <label for="quantity" class="form-label"></label>
+                        <input name="listing[quantity]" value="<%= listing.quantity %>" type="number" class="form-control" required />
+                    </div>
+                </div>
+    
+                <label for="Image URL" class="form-label"></label>
+                <input name="listing[image]" value="<%= listing.image %>" type="text" class="form-control" />
+    
+                <label for="availability" class="form-label"></label>
+                <input name="listing[availability]" value="<%= listing.availability %>" type="text" class="form-control" required />
+    
+                <div class="row">
+                    <div class="column">
+                        <label for="country" class="form-label"></label>
+                        <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required />
+                    </div>
+                    <div class="column">
+                        <label for="state" class="form-label"></label>
+                        <input name="listing[state]" value="<%= listing.state %>" type="text" class="form-control" required />
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="column">
+                        <label for="city" class="form-label"></label>
+                        <input name="listing[city]" value="<%= listing.city %>" type="text" class="form-control" required />
+                    </div>
+                    <div class="column">
+                        <label for="street" class="form-label"></label>
+                        <input name="listing[street]" value="<%= listing.street %>" type="text" class="form-control" required />
+                    </div>
+                </div>
+
+                <div class="btn-box">
+                    <button  class="edit-btn submit-btn">Edit</button>
+                    
+                    <button type="reset" class="edit-btn cancel-btn">
+                        <a href="/listings/donor" style="text-decoration: none;color:white">Cancel</a>
+                    </button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

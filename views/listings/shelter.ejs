@@ -1,0 +1,597 @@
+<!-- 
+
+  <style>
+    .search{
+      height:20%;
+      width:100%;
+      display:flex;
+      justify-content: center;
+    }
+    .search form{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width:60%;
+    }
+
+    .search form button{
+      border-radius: 25px;
+      padding: 0 1rem 0 1rem;
+    }
+
+    .search form button i{
+      display:inline;
+      margin-right: 0.5rem;
+    }
+
+    .search-input{
+      border-radius: 25px;
+      font-size: 1.3rem;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+  </style>
+
+  <div class="search">
+    <form class="d-flex" role="search" action="/listings/search" method="get">
+      <input class="form-control me-2 search-input" type="search" placeholder="Search restaurants" aria-label="Search" name="q">
+      <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+    </form>
+  </div>
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ms-5 me-5">
+    <% for(let listing of allListings) { %>
+      <a href="/listings/<%= listing._id%>" class="listing-link">
+      <div class="card listing-card col" >
+        <img src="<%= listing.image%>" class="card-img-top" alt="Listing_image" style="height : 20rem">
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <b><%= listing.item %></b><br>
+            <%= listing.quantity %> Plates
+          </p>
+        </div>
+      </div>
+    </a>
+    <% } %>
+  </div>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+  rel="stylesheet"
+/>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", serif;
+}
+
+body {
+    display: flex;
+    background-color: #f5f5f5;
+}
+.main{
+    width: 100%;
+    display: flex;
+}
+ /* side  bar active */
+ /* .sidebar {
+    grid-area: sidebar;
+    
+    color: white;
+    height: 100vh;
+    overflow-y: auto;
+  } */
+  .sidebar {
+    width: 16.5%;
+    background-color: #53b09b;
+    color: #fff;
+    padding: 20px;
+    padding-right: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 4;
+    left: 0;
+    top: 0;
+    position: relative;
+    /* display: none; */
+    transition: all 0.5s ease-in-out;
+    /* position: fixed; */
+}
+.sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+  .sidebar-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar-content .logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    /* padding: 0px; */
+    margin-top: -10px;
+    /* position: absolute; */
+    /* background-color: #fff; */
+  }
+  
+  .sidebar-content h3,i {
+    color: white;
+    font-size: 1.5em;
+  }
+  
+  .main-content .upper-header i{
+    display: none;
+    font-size: 1.6em;
+  }
+  .sidebar-content img {
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  /* Sidebar items styling */
+  .items {
+    list-style: none;
+    padding-top: 10px;
+  }
+  
+  .items li {
+    display: flex;
+    align-items: center;
+    padding: 14px 0;
+    font-size: 1em;
+  }
+  
+  .items li i {
+    color: white;
+    margin-right: 10px;
+    margin-left: 20px;
+  }
+  
+  .items li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .items li:hover {
+    cursor: pointer;
+    background-color: white;
+    border-left: 4px solid #53b09b;
+    padding-left: 16px;
+    
+  }
+  
+  .items li:hover a,
+  .items li:hover i {
+    /* color: #f3f4f6; */
+    transition: 0.3s ease;
+    color: #53b09b;
+    transform: scale(1.05);
+  }
+  .upgrade {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    /* margin-left: -10px; */
+    width: 90%;
+    margin-top: 100%;
+}
+
+.upgrade p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.upgrade button {
+    background-color: rgba(83, 176, 155,0.8);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.main .main-content {
+    width: 65%;
+    padding: 20px;
+    /* background-color: #6b52ae; */
+    height: 100vh;
+    margin-left: 8px;
+    overflow-y: auto;
+}
+
+.main .main-content::-webkit-scrollbar{
+  display: none;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-direction: column;
+    /* background-color: antiquewhite; */
+    /* position: fixed; */
+    /* z-index: 2; */
+    /* position: absolute; */
+}
+header .upper-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: rgba(83, 176, 155,0.4); */
+    width: 100%;
+    height: 60px;
+    /* position: fixed; */
+    z-index: 5;
+    padding: 2px 25px;
+    border-radius: 20px;
+
+}
+header .upper-header .search{
+  height: 80%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px 10px;
+  /* background-color: #53b09b; */
+  background-color: white;
+}
+.search form{
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.search i {
+  font-size: 18px;
+  color: #a62424;
+  /* margin-right: 8px; */
+}
+.search button{
+  width: 25%;
+  height: 90%;
+  border: none;
+  border-radius: 5px;
+  background-color: #53b09b;
+  color: white;
+}
+.search input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+}
+header .lower-header{
+    width: 100%;
+    /* background-color: aquamarine; */
+    width: 100%;
+    height: 24vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    margin-top: 20px;
+    /* object-fit: contain; */
+    overflow: hidden;
+    border-radius: 25px;
+}
+header .lower-header img{
+  height: 100%;
+  width: 100%;
+  /* transform: scale(1.0); */
+}
+.lower-header:hover{
+  transform: scale(1.02);
+  transition: all 0.5s ease-in-out;
+}
+
+.donor-posts {
+  margin-top: 20px;
+  /* background-color: #a62424; */
+}
+
+.donor-posts h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.posts-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  /* justify-content: space-evenly; */
+  /* justify-content: space-between; */
+}
+
+.post {
+  background-color: #fff;
+  width: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 20px;
+  /* margin-right: 30px;
+  margin-left:5px ; */
+}
+.post:hover{
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+.post img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.post h4 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.post p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.post button {
+  background-color: rgba(83, 176, 155,1);
+  color: #fff;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.right{
+  height: 100%;
+  width: calc(100% - 81% - 8px);
+  /* background-color: #53b09b; */
+  padding-top: 30px;
+  padding: 16px;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.personal-details{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  /* background-color: #6b52ae; */
+  gap: 15px;
+  padding: 2px 15px;
+  /* background-color: #6b52ae; */
+  background-color: rgba(83, 176, 155,0.4);
+  border-radius: 20px;
+}
+.personal-details i{
+  color: black;
+}
+.personal-details img{
+  height: 50%;
+  width: 12%;
+  border-radius: 50%;
+  margin-left: auto;
+}
+.statistics {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 100%;
+  /* flex-wrap: wrap; */
+}
+
+.statistics h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.stats-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats-box {
+  background-color: #fff;
+  flex: 1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  background-color: rgba(83, 176, 155,0.4);
+  text-align: center;
+  height: 70px;
+}
+
+.stats-box h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.stats-box p {
+  font-size: 24px;
+  font-weight: bold;
+  color: green;
+}
+.stats-box:hover{
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
+}
+@media (max-width:600px) {
+  .main{
+    flex-direction: column;
+  }
+}
+
+    </style>
+    <script src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyMcxxkPDXGvkROsyXCWJuemiSWh_zXwfmq" async defer></script>
+</head>
+<body>
+    <div class="main">
+        <nav class="sidebar" id="sidebar">
+            <section class="sidebar-content">
+                <div class="logo">
+                  <img src="/images/LOGO-removebg-preview.png" alt="Meal Connect Logo" />
+                    <h3>mealConnect</h3>
+                </div>
+                <ul class="items">
+                  <li><i class="ri-store-fill"></i><a href="/listings/shelter">Home</a></li>
+                  <li><i class="ri-dashboard-line"></i><a href="/listings/board">Dashboard</a></li>
+                  <li><i class="ri-compass-discover-line"></i><a href="/listings/navigations">Route Finder</a></li>
+                  <li><i class="ri-message-3-line"></i><a href="#">Messages</a></li>
+                  <li><i class="ri-settings-line"></i><a href="/listings/details">Settings</a></li>
+                </ul>
+              </section>
+              <div class="upgrade">
+                <p>Upgrade to unlock premium features</p>
+                <button>Upgrade</button>
+            </div> 
+        </nav>
+        <div class="main-content">
+            <header>
+                <div class="upper-header">
+                    
+                    <h2 style="font-size: 1.5rem;"> <span style="color: black;">Welcome</span>, Aman</h2>
+                    <div class="search">
+                      <!-- <i class="ri-search-line"></i>
+                      <input type="text" placeholder="Filter" />
+                      <button> Search</button> -->
+                      <form  role="search" action="/listings/search" method="get">
+                        <input class="form-control me-2 search-input" type="search" placeholder="Search restaurants" aria-label="Search" name="q">
+                        <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+                      </form>
+                    </div>
+                </div>
+                <div class="lower-header" id="map">
+                  <!-- <img src="./finalnew.jpg" alt=""> -->
+                </div>
+                
+            </header>
+              
+              <section class="donor-posts">
+                <h3>New Donations</h3>
+                <div class="posts-container">
+                    <!-- Placeholder for Food Donor Posts -->
+                    <% allListings = allListings.reverse(); %>
+                    <% for(let listing of allListings) { %>
+                      <a href="/listings/<%= listing._id%>" class="listing-link" style="text-decoration: none;">
+                      <div class="card listing-card col" >
+
+                        <div class="post">
+                          <img src="<%= listing.image%>" alt="Food Image">
+                          <h4 style="color:black;"><%= listing.name %></h4>
+                          <p style="color:rgb(36, 33, 33);">Food Item: <%= listing.item %></p>
+                          <p style="color:rgb(36, 33, 33);">Quantity: <%= listing.quantity %> Plates</p>
+                          <button>Accept Donation</button>
+                      </div>
+                      </div>
+                    </a>
+                    <% } %>
+                    <!-- Add more posts here -->
+                </div>
+            </section>
+            
+            
+        </div> 
+        <div class="right">
+            <div class="personal-details">
+              <i class="ri-notification-2-line"></i>
+              <i class="ri-message-3-line"></i>
+              <i class="ri-settings-line"></i>
+              <img src="/images/shelter-profile.png" alt="">
+            </div>
+            <div class="statistics">
+              <h3>Statistics</h3>
+                <div class="stats-boxes">
+                    <div class="stats-box">
+                        <h4>Total Donations</h4>
+                        <p>300</p>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Served Meals</h4>
+                        <p>1500</p>
+                    </div>
+                    <div class="stats-box">
+                        <h4>Monthly Goal</h4>
+                        <p>5000 meals</p>
+                    </div>
+                </div>
+            </div>
+            
+         </div>
+    </div>
+    <script >
+      const address = "99PR+HJX, Khelgaon, Ranchi, Jharkhand 834009";
+        
+        // Step 2: Replace 'YOUR_API_KEY' with your Gomaps geocoding API key
+        const apiKey = 'AlzaSyMcxxkPDXGvkROsyXCWJuemiSWh_zXwfmq';
+        
+        // Function to fetch latitude and longitude for the given address
+        async function getCoordinates(address) {
+            const response = await fetch(`https://maps.gomaps.pro/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`);
+            const data = await response.json();
+            if (data.status === "OK") {
+                const location = data.results[0].geometry.location;
+                return { lat: location.lat, lng: location.lng };
+            } else {
+                throw new Error("Location not found");
+            }
+        }
+        
+        // Initialize the map
+        function initMap(lat, lng) {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: lat, lng: lng },
+                zoom: 18,
+            });
+            
+            // Add a marker at the fetched coordinates
+            new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map,
+                title: "Location of " + address,
+            });
+        }
+        
+        // Load map with marker based on the address
+        async function loadMapWithAddress() {
+            try {
+                const { lat, lng } = await getCoordinates(address);
+                initMap(lat, lng);
+            } catch (error) {
+                console.error("Error fetching coordinates:", error);
+            }
+        }
+        
+        // Load map when the page loads
+        window.onload = loadMapWithAddress;
+    </script>
+</body>
+</html>
